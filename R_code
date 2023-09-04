@@ -1,0 +1,140 @@
+
+> std_name = c("sujit","ram","sham","sujit")
+#                                 Convert in to factor
+> facter_data = factor(std_name)
+> std_name
+[1] "sujit" "ram"   "sham"  "sujit"
+
+
+#                                                   check factor
+> is.factor(std_name)
+[1] FALSE
+> 
+> 
+> heiht= c(132,151,162)
+> age=c(55,80,35)
+> gender=  c ("male","female","male")
+#                                                    make data frame
+
+> df = data.frame(heiht,age,gender)
+> df
+  heiht age gender
+1   132  55   male
+2   151  80 female
+3   162  35   male
+
+> is.factor(facter_data)
+[1] TRUE
+> facter_data
+[1] sujit ram   sham  sujit
+Levels: ram sham sujit
+
+                                                   # Typeof()
+> typeof(facter_data)
+[1] "integer"
+> aa=sapply(facter_data,class)
+> aa
+[1] "factor" "factor" "factor" "factor"
+> head(facter_data)
+[1] sujit ram   sham  sujit
+Levels: ram sham sujit
+> head(df)
+  heiht age gender
+1   132  55   male
+2   151  80 female
+3   162  35   male
+> data(df)
+
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+#                                                level()
+> level1 =levels(df)[df]
+> level1
+NULL
+> level1 =levels(gender)[gender]
+> level1
+NULL
+> facter_data
+[1] sujit ram   sham  sujit
+Levels: ram sham sujit
+> data =c("east","west","west","east","west","east","west","west","east")
+> data
+[1] "east" "west" "west" "east" "west" "east" "west" "west" "east"
+> is.factor(data)
+[1] FALSE
+> fd=factor(data)
+> fd
+[1] east west west east west east west west east
+Levels: east west
+> is.factor(fd)
+[1] TRUE
+> data_frame = data.frame(heiht,age,gender)
+
+> data_frame = data.frame(heiht,age,gender)
+>  data_frame
+  heiht age gender
+1   132  55   male
+2   151  80 female
+3   162  35   male
+> is.factor(data_frame$age)
+[1] FALSE
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                 # print age value from data_frame (use $ symbol)
+> data_frame$age
+[1] 55 80 35
+> 
+                                                     # new values & level()
+
+new_order= factor(fd,levels= c("north","west","east"))
+> new_order
+  ----------------------------------------------------------------------------------------------------------------------------------
+
+                                               # convert list into a factor
+
+> list = list("east","west","east","north")
+> typeof(list)
+[1] "list"
+                                              #convert into a unlist
+
+a=unlist(list)
+> typeof(a)
+[1] "character"
+> data = factor(a)
+> 
+> 
+> a
+[1] "east"  "west"  "east"  "north"
+
+> data
+[1] east  west  east  north
+Levels: east north west
+
+-------------------------------------------------------------------------------------------------------------------------------
+fact1 = factor(letters[1:6])
+> fact1
+[1] a b c d e f
+Levels: a b c d e f
+> 
+> 
+> aa=sapply(fact1,class)
+> aa
+[1] "factor" "factor" "factor" "factor" "factor" "factor"
+> 
+> 
+> level1 = levels(fact1)[fact]
+Error: object 'fact' not found
+> level1 = levels(fact1)[fact1]
+> 
+> level1
+[1] "a" "b" "c" "d" "e" "f"
+
+---------------------------------------------------------------------------------------------------------------------------------------------
