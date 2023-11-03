@@ -1,0 +1,123 @@
+#import lib
+
+import numpy as np
+import pandas as pd
+
+#----------------------------------------------
+
+dataset=pd.read_csv('Data.csv')
+
+# print dataset
+
+ dataset
+
+# output
+
+      Country	 Age	Salary	   Purchased
+
+0	France	44.0	72000.0	        No
+1	Spain	27.0	48000.0 	Yes
+2	Germany	30.0	54000.0 	No
+3	Spain	38.0	61000.0 	No
+4	Germany	40.0	NaN	        Yes
+5	France	35.0	58000.0 	Yes
+6	Spain	NaN	52000.0 	No
+7	France	48.0	79000.0 	Yes
+8	Germany	50.0	83000.0 	No
+9	France	37.0	67000.0 	Yes
+
+# .value for convert in one array for x
+
+x=dataset[['Country',	'Age',	'Salary']].values
+
+print(x)
+
+#output
+
+array([['France', 44.0, 72000.0],
+       ['Spain', 27.0, 48000.0],
+       ['Germany', 30.0, 54000.0],
+       ['Spain', 38.0, 61000.0],
+       ['Germany', 40.0, nan],
+       ['France', 35.0, 58000.0],
+       ['Spain', nan, 52000.0],
+       ['France', 48.0, 79000.0],
+       ['Germany', 50.0, 83000.0],
+       ['France', 37.0, 67000.0]], dtype=object)
+
+
+# .value for convert in one array for y
+
+y=dataset[['Purchased']].values
+
+print(y)
+
+#output 
+array([['No'],
+       ['Yes'],
+       ['No'],
+       ['No'],
+       ['Yes'],
+       ['Yes'],
+       ['No'],
+       ['Yes'],
+       ['No'],
+       ['Yes']], dtype=object)
+
+#----------------------------------------------------
+#find Mising Value 
+
+
+from sklearn.impute import SimpleImputer
+
+
+imputer = SimpleImputer(missing_values=np.nan, strategy='mean') #calculate mean and ste the null  value
+
+
+imputer=imputer.fit(x[:,1:3])
+
+x[:,1:3]=imputer.transform(x[:,1:3])
+
+
+print(x)
+
+#output
+array([['France', 44.0, 72000.0],
+       ['Spain', 27.0, 48000.0],
+       ['Germany', 30.0, 54000.0],
+       ['Spain', 38.0, 61000.0],
+       ['Germany', 40.0, 63777.77777777778],
+       ['France', 35.0, 58000.0],
+       ['Spain', 38.77777777777778, 52000.0],
+       ['France', 48.0, 79000.0],
+       ['Germany', 50.0, 83000.0],
+       ['France', 37.0, 67000.0]], dtype=object)
+
+#-----------------------------------------------
+#convert catagorical data into numiric
+
+from sklearn.preprocessing import LabelEncoder
+
+
+encoder_x = LabelEncoder()
+
+
+x[:,0] = encoder_x.fit_transform (x[:,0])
+
+print(c)
+
+array([[0, 44.0, 72000.0],
+       [2, 27.0, 48000.0],
+       [1, 30.0, 54000.0],
+       [2, 38.0, 61000.0],
+       [1, 40.0, 63777.77777777778],
+       [0, 35.0, 58000.0],
+       [2, 38.77777777777778, 52000.0],
+       [0, 48.0, 79000.0],
+       [1, 50.0, 83000.0],
+       [0, 37.0, 67000.0]], dtype=object)
+
+
+
+
+
